@@ -4,18 +4,18 @@ import Language from './Language';
 import Theme from './Theme';
 import { useTranslation } from 'react-i18next';
 
-const lngs = {
-  en: { nativeName: 'English' },
-  es: { nativeName: 'español' }
-};
+
 
 const Setting = () => {
+
+  const { t, i18n } = useTranslation();
+
   return (
     <Grid container spacing={3} display={'flex'} justifyContent={'center'} alignItems={'center'} mt={2}>
       <Grid item xs={12} sm={8} >
         <Card sx={{ backgroundColor: 'rgba(111,93,165 ,0.1)' }}>
           <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
-            Language
+            {t('text.language')}
             <Language />
           </CardContent>
         </Card>

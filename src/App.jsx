@@ -38,15 +38,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "/setting",
-        element: <Setting/>,
+        element: <Setting />,
       },
       {
         path: "/calender",
-        element: <Forecast/>,
+        element: <Forecast />,
       },
       {
         path: "/favourite-city",
-        element: <FavLocation/>,
+        element: <FavLocation />,
       },
     ]
   },

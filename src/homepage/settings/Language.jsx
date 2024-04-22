@@ -11,7 +11,7 @@ const Language = () => {
 
   return (
     <Select
-    sx={{width:"300px" , backgroundColor:'white'}}
+      sx={{ width: "300px", backgroundColor: 'white' }}
       value={i18n.language}
       onChange={(event) => changeLanguage(event.target.value)}
       fullWidth

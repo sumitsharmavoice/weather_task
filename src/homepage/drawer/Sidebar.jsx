@@ -49,15 +49,15 @@ const Sidebar = () => {
           </IconButton>
           <div style={{ flexGrow: 1 }}></div>
           {localStorage.getItem('token') ?
-            <Box onClick={() => {localStorage.removeItem('token'), navigate('/')  }}>
+            <Box onClick={() => { localStorage.removeItem('token'), navigate('/') }}>
               <IconButton color="default">
-                {"Logout"}
+                {t('text.logout')}
                 <LoginIcon />
               </IconButton>
             </Box> :
             <Box onClick={() => navigate('/login')}>
               <IconButton color="default">
-                {"Login"}
+                {t('text.login')}
                 <LoginIcon />
               </IconButton>
             </Box>}
@@ -83,7 +83,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText primary={t('Dashboard')} /> {/* Translate text */}
+              <ListItemText primary={t('text.dashboard')} /> {/* Translate text */}
             </ListItem>
             <ListItem
               button
@@ -95,7 +95,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <MapIcon />
               </ListItemIcon>
-              <ListItemText primary={t('Map')} /> {/* Translate text */}
+              <ListItemText primary={t('text.map')} /> {/* Translate text */}
             </ListItem>
             <ListItem
               button
@@ -107,7 +107,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <LocationOnIcon />
               </ListItemIcon>
-              <ListItemText primary={t('Saved Location')} /> {/* Translate text */}
+              <ListItemText primary={t('text.Savedlocation')} /> {/* Translate text */}
             </ListItem>
             <ListItem
               button
@@ -119,7 +119,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <EventIcon />
               </ListItemIcon>
-              <ListItemText primary={t('Forecast')} /> {/* Translate text */}
+              <ListItemText primary={t('text.Forecast')} /> {/* Translate text */}
             </ListItem>
             <ListItem
               button
@@ -131,7 +131,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
-              <ListItemText primary={t('Settings')} /> {/* Translate text */}
+              <ListItemText primary={t('text.setting')} /> {/* Translate text */}
             </ListItem>
           </List>
         </div>
@@ -148,7 +148,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary={"Logout"} /> {/* Translate text */}
+              <ListItemText primary={t('text.logout')} /> {/* Translate text */}
             </ListItem> :
             <ListItem
               button
@@ -161,7 +161,7 @@ const Sidebar = () => {
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary={"Login"} /> {/* Translate text */}
+              <ListItemText primary={t('text.login')} /> {/* Translate text */}
             </ListItem>
           }
 

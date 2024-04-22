@@ -14,12 +14,14 @@ import pressure from '../../assets/pressure.png';
 import windSpeed from '../../assets/windSpeed.png';
 import { useDispatch } from 'react-redux';
 import { setLatLon } from '../../Redux/weatherSlice';
+import { useTranslation } from 'react-i18next';
 
 const WeatherCard = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState('Mumbai');
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [favoriteCities, setFavoriteCities] = useState(() => {
     const storedFavoriteCities = JSON.parse(localStorage.getItem('favoriteCities'));
@@ -111,7 +113,7 @@ const WeatherCard = () => {
       <Grid container spacing={2} >
         <Grid item xs={12} sm={3} >
           <Button variant="contained" color={isFavorite ? "secondary" : "secondary"} sx={{ height: "54px", mt: "16px", width: "100%", mb: "-12px" }} onClick={toggleFavorite}>
-            {isFavorite ? "Add to Favorites" : "Add to Favorites"}
+            {isFavorite ? t('text.favourite') : t('text.favourite')}
           </Button>
         </Grid>
         <Grid item xs={12} sm={9} >
@@ -141,18 +143,18 @@ const WeatherCard = () => {
           {weatherData && (
             <Card variant="outlined" sx={{ backgroundColor: "rgba(111,93,165 ,0.1)" }}>
               <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-              <Typography variant='h5'>{(city).toLocaleUpperCase()}</Typography>
+                <Typography variant='h5'>{(city).toLocaleUpperCase()}</Typography>
                 <Box display={'flex'} justifyContent={"space-around"} gap={10} sx={{ marginBottom: 3, marginTop: 5 }}>
 
                   <Box display="flex" alignItems="center" flexDirection={'column'}>
-                  <Typography variant='body1' sx={{ fontWeight: 'bold', display:'flex' , alignItems:"center" , gap:'5px' }}><WbSunnyIcon /> Sunrise</Typography>
+                    <Typography variant='body1' sx={{ fontWeight: 'bold', display: 'flex', alignItems: "center", gap: '5px' }}><WbSunnyIcon /> {t('text.Sunrise')}</Typography>
                     <Typography variant='body1'>{formatTime(weatherData.sys.sunrise)}</Typography>
 
                   </Box>
                   <Box display="flex" alignItems="center" flexDirection={'column'}>
-                  <Typography variant='body1' sx={{ fontWeight: 'bold', display:'flex' , alignItems:"center" , gap:'5px' }}><NightsStayIcon /> Sunrise</Typography>
+                    <Typography variant='body1' sx={{ fontWeight: 'bold', display: 'flex', alignItems: "center", gap: '5px' }}><NightsStayIcon /> {t('text.Sunset')}</Typography>
 
-                  <Typography variant='body1'>{formatTime(weatherData.sys.sunset)}</Typography>
+                    <Typography variant='body1'>{formatTime(weatherData.sys.sunset)}</Typography>
 
                   </Box>
 
@@ -163,11 +165,11 @@ const WeatherCard = () => {
                 </Grid>
                 <Grid item display={"flex"} justifyContent="center" gap={10}>
                   <Box sx={{ textAlign: "center" }}>
-                    <Typography variant='body1' sx={{ fontWeight: 'bold' , display:'flex' , alignItems:'center'}}><ThermostatIcon /> Max Temp</Typography>
+                    <Typography variant='body1' sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }}><ThermostatIcon /> {t('text.Max Temp')}</Typography>
                     <Typography variant='body2'>{weatherData?.main.temp_max}</Typography>
                   </Box>
                   <Box sx={{ textAlign: "center" }}>
-                    <Typography variant='body1' sx={{ fontWeight: 'bold' , display:'flex' , alignItems:'center' }}><ThermostatIcon /> Min Temp</Typography>
+                    <Typography variant='body1' sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }}><ThermostatIcon /> {t('text.Min Temp')}</Typography>
                     <Typography variant='body2'>{weatherData.main.temp_min - 20}</Typography>
                   </Box>
                 </Grid>
@@ -179,8 +181,8 @@ const WeatherCard = () => {
         <Grid item xs={12} sm={6}>
           <Card variant="outlined" sx={{ backgroundColor: "rgb(236,243,248)", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <CardContent>
-              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}><WavesIcon /> Wind</h2>
-              <p className="info-description">Today's Wind Speed</p>
+              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}><WavesIcon /> {t('text.Wind')}</h2>
+              <p className="info-description">{t("text.Today's Wind Speed")}</p>
               <h3 className="info-value">{weatherData?.wind?.speed} km/h</h3>
             </CardContent>
             <CardContent>
@@ -195,8 +197,8 @@ const WeatherCard = () => {
         <Grid item xs={12} sm={6}>
           <Card variant="outlined" sx={{ backgroundColor: "rgb(236,243,248)", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
             <CardContent>
-              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}> <OpacityIcon /> Humidity</h2>
-              <p className="info-description">Today's Humidity</p>
+              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}> <OpacityIcon /> {t('text.Humidity')}</h2>
+              <p className="info-description">{t("text.Today's Humidity")}</p>
               <h3 className="info-value"> {weatherData?.main?.humidity}</h3>
             </CardContent>
             <CardContent>
@@ -211,8 +213,8 @@ const WeatherCard = () => {
         <Grid item xs={12} sm={6}>
           <Card variant="outlined" sx={{ backgroundColor: "rgb(236,243,248)", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <CardContent>
-              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}><GrainIcon /> Pressure</h2>
-              <p className="info-description">Today's Pressure</p>
+              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}><GrainIcon /> {t("text.Pressure")}</h2>
+              <p className="info-description">{t("text.Today's Pressure")}</p>
               <h3 className="info-value"> {weatherData?.main?.pressure}</h3>
             </CardContent>
             <CardContent>
@@ -227,8 +229,8 @@ const WeatherCard = () => {
         <Grid item xs={12} sm={6}>
           <Card variant="outlined" sx={{ backgroundColor: "rgb(236,243,248)", display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <CardContent>
-              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}><ThermostatIcon /> Temperature </h2>
-              <p className="info-description">Today's Temperature</p>
+              <h2 className="info-title" style={{ display: 'flex', flexWrap: 'nowrap' }}><ThermostatIcon /> {t("text.Temperature")} </h2>
+              <p className="info-description">{t("text.Today's Temperature")}</p>
               <h3 className="info-value"> {weatherData?.main?.temp} K</h3>
             </CardContent>
             <CardContent>

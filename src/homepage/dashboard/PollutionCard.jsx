@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, CircularProgress, Grid, Box } from '@mui/material';
 import { Air, AcUnit, LocalGasStation, Gesture, Whatshot, Cloud, FilterDrama, WbIncandescent } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const PollutionCard = () => {
+  const { t } = useTranslation();
+
   const [pollutionData, setPollutionData] = useState(null);
   const [loading, setLoading] = useState(true);
   const lat = useSelector(state => state.weather.lat) || 19.0760; // Default latitude for Mumbai
@@ -35,15 +38,15 @@ const PollutionCard = () => {
     <div>
       <Card variant="outlined" style={{ width: '100%', height: '100%', marginTop: "15px" }}>
         <CardContent style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <Typography variant='h5'>Air Quality Index: {loading ? <CircularProgress size={20} /> : pollutionData?.list[0]?.main?.aqi}</Typography>
+          <Typography variant='h5'>{`${t('text.AQI')}:`} {loading ? <CircularProgress size={20} /> : pollutionData?.list[0]?.main?.aqi}</Typography>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Grid container >
-              <Grid item xs={12} sm={6} sx={{ bgcolor: "green", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>0-50 Good</Grid>
-              <Grid item xs={12} sm={6} sx={{ bgcolor: "yellow", color: 'black', p: '5px', borderRadius: "5px", my: "2px" }}>50-100 Moderate</Grid>
-              <Grid item xs={12} sm={6} sx={{ bgcolor: "orange", color: 'black', p: '5px', borderRadius: "5px", my: "2px" }}>100-150 Sensitive Groups</Grid>
-              <Grid item xs={12} sm={6} sx={{ bgcolor: "red", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>150-200 Unhealthy</Grid>
-              <Grid item xs={12} sm={6} sx={{ bgcolor: "purple", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>200-250 Very Unhealthy</Grid>
-              <Grid item xs={12} sm={6} sx={{ bgcolor: "maroon", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>250-Infinite Hazardous</Grid>
+              <Grid item xs={12} sm={6} sx={{ bgcolor: "green", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>{`0-50 ${t('text.Good')}`}</Grid>
+              <Grid item xs={12} sm={6} sx={{ bgcolor: "yellow", color: 'black', p: '5px', borderRadius: "5px", my: "2px" }}>{`50-100 ${t('text.Moderate')}`}</Grid>
+              <Grid item xs={12} sm={6} sx={{ bgcolor: "orange", color: 'black', p: '5px', borderRadius: "5px", my: "2px" }}>{`100-150 ${t('text.Sensitive Groups')}`}</Grid>
+              <Grid item xs={12} sm={6} sx={{ bgcolor: "red", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>{`150-200 ${t('text.Unhealthy')}`}</Grid>
+              <Grid item xs={12} sm={6} sx={{ bgcolor: "purple", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>{`200-250 ${t('text.Very Unhealthy')}`}</Grid>
+              <Grid item xs={12} sm={6} sx={{ bgcolor: "maroon", color: 'white', p: '5px', borderRadius: "5px", my: "2px" }}>{`250-${t('text.Infinite Hazardous')}`}</Grid>
             </Grid>
           </div>
 
